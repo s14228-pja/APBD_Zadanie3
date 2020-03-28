@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Cwieczenie3.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -16,6 +17,7 @@ namespace Cwieczenie3.Controllers
         {
             return $"Kowalski, Malewski, Andrzejeski sortowanie = {orderBy}";
         }
+
         [HttpGet("{id}")]
         public IActionResult GetStudent(int id)
         {
@@ -26,9 +28,18 @@ namespace Cwieczenie3.Controllers
             {
                 return Ok("Malewski");
             }
-
-
             return NotFound("Nie znaleziono studenta");
+        }
+
+        [HttpPost]
+        public IActionResult CreateStudent(Student student)
+        {
+            // add to database
+            // genrating index number
+
+            student.IndexNumber = $"s{new Random().Next(1, 20000)}";
+
+            return Ok(student);
         }
     }
 }
