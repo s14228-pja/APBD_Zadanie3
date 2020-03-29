@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace Cwieczenie3.DAL
 {
-    public class MockIDbService : IDbServices
+    public class MockDbServices : IDbServices
     {
         private static IEnumerable<Student> _students;
 
-        static MockIDbService ()
+        static MockDbServices ()
         {
             _students = new List<Student>
             {

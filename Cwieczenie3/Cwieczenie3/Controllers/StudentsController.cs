@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Cwieczenie3.DAL;
 using Cwieczenie3.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -12,10 +13,17 @@ namespace Cwieczenie3.Controllers
     [ApiController]
     public class StudentsController : ControllerBase
     {
-        [HttpGet]
-        public string GetStudent(string orderBy)
+        private readonly IDbServices _dbService;
+
+        public StudentsController (IDbServices dbServices)
         {
-            return $"Kowalski, Malewski, Andrzejeski sortowanie = {orderBy}";
+            _dbService = dbServices;
+        }
+
+        [HttpGet]
+        public IActionResult GetStudent(string orderBy)
+        {
+            return Ok(_dbService.GetStudents());
         }
 
         [HttpGet("{id}")]
