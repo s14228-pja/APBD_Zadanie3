@@ -41,5 +41,25 @@ namespace Cwieczenie3.Controllers
 
             return Ok(student);
         }
+
+        [HttpPut("{id}")]
+        public IActionResult UpdateStudent(int id, Student student)
+        {
+            // add to database
+            // genrating index number
+            
+
+            return Ok("Aktualizacja danych zakonczona sukcesem");
+        }
+
+        [HttpDelete("{id}")]
+        public IActionResult DeleteStudent(int id)
+        {
+            // add to database
+            // genrating index number
+
+
+            return Ok("Usuwanie ukończone");
+        }
     }
 }
