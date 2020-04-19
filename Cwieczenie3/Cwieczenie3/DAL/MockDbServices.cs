@@ -18,7 +18,7 @@ namespace Cwieczenie3.DAL
 
                 new Student{ FirstName="Anna", LastName="Malewska", IndexNumber = $"s{new Random().Next(1, 20000)}" },
 
-                new Student{ FirstName="Andrzej", LastName="Andrzejewicz", IndexNumber = $"s{new Random().Next(1, 20000)}" }
+                new Student{ FirstName="Andrzej ", LastName="Andrzejewicz", IndexNumber = $"s{new Random().Next(1, 20000)}" }
             };
 
         }
