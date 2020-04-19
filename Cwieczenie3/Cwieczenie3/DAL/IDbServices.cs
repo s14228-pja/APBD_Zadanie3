@@ -9,5 +9,6 @@ namespace Cwieczenie3.DAL
     public interface IDbServices
     {
         public IEnumerable<Student> GetStudents();
+        public IEnumerable<Student> GetStudent(String nrIndeksu);
     }
 }

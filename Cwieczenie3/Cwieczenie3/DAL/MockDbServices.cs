@@ -27,5 +27,9 @@ namespace Cwieczenie3.DAL
         {
             return _students;
         }
+        public IEnumerable<Student> GetStudent( String nrIndeksu)
+        {
+            return _students;
+        }
     }
 }

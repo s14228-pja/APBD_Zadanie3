@@ -1,11 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data.SqlClient;
 using System.Linq;
-using System.Threading.Tasks;
 using Cwieczenie3.DAL;
 using Cwieczenie3.Models;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Cwieczenie3.Controllers
@@ -23,9 +20,7 @@ namespace Cwieczenie3.Controllers
 
         [HttpGet]
         public IActionResult GetStudent(string orderBy)
-        {   
-            
-                
+        {
             return Ok(_dbService.GetStudents());
         }
 
@@ -35,7 +30,8 @@ namespace Cwieczenie3.Controllers
             if (id == 1)
             {
                 return Ok("Kowalski");
-            } else if (id == 2)
+            }
+            else if (id == 2)
             {
                 return Ok("Malewski");
             }

@@ -23,6 +23,14 @@ namespace Cwieczenie3.Models
         {
             get; set;
         }
+        public string Semester
+        {
+            get; set;
+        }
+        public string StudiesName
+        {
+            get; set;
+        }
 
     }
 }
