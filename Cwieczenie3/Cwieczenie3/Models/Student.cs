@@ -7,7 +7,7 @@ namespace Cwieczenie3.Models
 {
     public class Student
     {
-        public int IdStudent
+        public DateTime BirthDate
         {
             get; set;
         }

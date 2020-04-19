@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
 using Cwieczenie3.DAL;
@@ -22,7 +23,9 @@ namespace Cwieczenie3.Controllers
 
         [HttpGet]
         public IActionResult GetStudent(string orderBy)
-        {
+        {   
+            
+                
             return Ok(_dbService.GetStudents());
         }
 
