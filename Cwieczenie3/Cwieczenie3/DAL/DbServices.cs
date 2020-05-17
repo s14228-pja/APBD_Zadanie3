@@ -69,10 +69,52 @@ namespace Cwieczenie3.DAL
 
         public bool VerifyEnrolment(Student student)
         {
-            throw new NotImplementedException();
+            using (var con = new SqlConnection("Data Source = db-mssql; Initial Catalog = s14228; Integrated Security = True"))
+            using (var com = new SqlCommand())
+            {
+                com.Connection = con;
+                //1. Czy studia istnieja?
+                com.CommandText = "select * from studies where studies.name=@name ";
+                com.Parameters.AddWithValue("name", student.StudiesName);
+                con.Open();
+                var dr = com.ExecuteReader();
+                if (!dr.Read())
+                {
+                    return false;
+                }
+                return true;
+            }
         }
 
         public bool VerifyEnrolmentExists(Enrollment enrollment)
+        {
+            using (var con = new SqlConnection("Data Source = db-mssql; Initial Catalog = s14228; Integrated Security = True"))
+            using (var com = new SqlCommand())
+            {
+                com.Connection = con;
+                //1. Czy studia istnieja?
+                com.CommandText = "select * from studies join Enrollment on studies.idStudy = Enrollment.idStudy where studies.name=@name and enrollment.semester =@semester";
+                com.Parameters.AddWithValue("name", enrollment.Studies);
+                com.Parameters.AddWithValue("semester", enrollment.Semester);
+                con.Open();
+                var dr = com.ExecuteReader();
+                if (!dr.Read())
+                {
+                    return false;
+                }
+                return true;
+            }
+        }
+
+        public void EnrollStudent(Student request)
+        {
+            
+                throw new NotImplementedException();
+            
+
+        }
+
+        public void PromoteStudents(int semester, string studies)
         {
             throw new NotImplementedException();
         }
