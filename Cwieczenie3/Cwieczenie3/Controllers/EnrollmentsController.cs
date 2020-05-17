@@ -38,7 +38,11 @@ namespace Cwieczenie3.Controllers
             {
                 return BadRequest();
             }
-            Enrollment enrollment = new Enrollment();
+            Enrollment enrollment = _dbService.EnrollStudent(student);
+            if (enrollment == null)
+            {
+                return BadRequest();
+            }
                 return Ok(enrollment);
         }
 
