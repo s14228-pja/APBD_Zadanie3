@@ -47,8 +47,6 @@ namespace Cwieczenie3.Controllers
         public IActionResult PromoteStudent(Enrollment enrollment)
         {
 
-
-
             if (!_dbService.VerifyEnrolmentExists(enrollment))
             {
                 return BadRequest();

@@ -71,5 +71,10 @@ namespace Cwieczenie3.DAL
         {
             throw new NotImplementedException();
         }
+
+        public bool VerifyEnrolmentExists(Enrollment enrollment)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
