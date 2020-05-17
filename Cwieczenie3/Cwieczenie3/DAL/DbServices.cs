@@ -106,10 +106,10 @@ namespace Cwieczenie3.DAL
             }
         }
 
-        public void EnrollStudent(Student request)
-        {
-            var st = new Student();
-            st.FirstName = request.FirstName;
+        public Enrollment EnrollStudent(Student request)
+        {  
+            var en = new Enrollment();
+            
             using (var con = new SqlConnection("Data Source = db-mssql; Initial Catalog = s14228; Integrated Security = True"))
             using (var com = new SqlCommand())
             {
@@ -128,6 +128,7 @@ namespace Cwieczenie3.DAL
                     if (!dr.Read())
                     {
                         tran.Rollback();
+                        return null;
                     }
                     int idstudies = (int)dr["IdStudies"];
 
@@ -166,12 +167,16 @@ namespace Cwieczenie3.DAL
 
                     tran.Commit();
 
+                    en.Semester = "1";
+                    en.Studies = request.StudiesName;
                 }
                 catch (SqlException exc)
                 {
                     tran.Rollback();
+                    return null;
                 }
             }
+            return en;
 
         }
 
