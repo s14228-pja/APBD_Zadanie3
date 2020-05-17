@@ -1,6 +1,7 @@
 ﻿using Cwieczenie3.Models;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
@@ -182,7 +183,26 @@ namespace Cwieczenie3.DAL
 
         public Enrollment PromoteStudents(int semester, string studies)
         {
-            throw new NotImplementedException();
+            var en = new Enrollment();
+            en.Studies = studies;
+            en.Semester = semester + 1;
+            using (var con = new SqlConnection("Data Source = db-mssql; Initial Catalog = s14228; Integrated Security = True"))
+            
+            {
+                try
+                {
+                    con.Open();
+                    SqlCommand cmd = new SqlCommand("PromoteStudents", con);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.Add(new SqlParameter("@Semester", semester));
+                    cmd.Parameters.Add(new SqlParameter("@StudiyName", studies));
+                    cmd.ExecuteNonQuery();
+                } catch (Exception exc)
+                {
+                    return null;
+                }
+            }
+            return en;
         }
     }
 }
