@@ -108,9 +108,70 @@ namespace Cwieczenie3.DAL
 
         public void EnrollStudent(Student request)
         {
-            
-                throw new NotImplementedException();
-            
+            var st = new Student();
+            st.FirstName = request.FirstName;
+            using (var con = new SqlConnection("Data Source = db-mssql; Initial Catalog = s14228; Integrated Security = True"))
+            using (var com = new SqlCommand())
+            {
+                com.Connection = con;
+
+                con.Open();
+                var tran = con.BeginTransaction();
+
+                try
+                {
+                    //1. Czy studia istnieja?
+                    com.CommandText = "select IdStudies from studies where name=@name";
+                    com.Parameters.AddWithValue("name", request.StudiesName);
+
+                    var dr = com.ExecuteReader();
+                    if (!dr.Read())
+                    {
+                        tran.Rollback();
+                    }
+                    int idstudies = (int)dr["IdStudies"];
+
+                    com.CommandText = "select IdEnrollment from Enrollment where idStudy=@idstudies and semester = '1'";
+                    com.Parameters.AddWithValue("idstudies", idstudies);
+
+                    var dr2 = com.ExecuteReader();
+                    int idEnrollment;
+                    if (!dr2.Read())
+                    {
+                        DateTime dateTimeVariable = DateTime.Now;
+                        com.CommandText = "INSERT INTO IdEnrollment(Semester, IdStudy, StartDate) VALUES(@Semester, @IdStudies, @Today)";
+                        com.Parameters.AddWithValue("Semester", 1;
+                        com.Parameters.AddWithValue("IdStudies", idstudies);
+                        com.Parameters.AddWithValue("Today", dateTimeVariable);
+                        com.ExecuteNonQuery();
+
+                        com.CommandText = "select IdEnrollment from Enrollment where idStudy=@idstudies and semester = '1'";
+                        com.Parameters.AddWithValue("idstudies", idstudies);
+
+                        var dr3 = com.ExecuteReader();
+                        idEnrollment = (int)dr3["IdEnrollment"];
+
+                    } else
+                    {
+                         idEnrollment = (int)dr2["IdEnrollment"];
+                    }
+
+                    com.CommandText = "INSERT INTO Student(IndexNumber, FirstName, LastName, BirthDate, IdEnrollment) VALUES(@Index, @Fname, @Lname, @BirthDate, @IdEnrollment)";
+                    com.Parameters.AddWithValue("index", request.IndexNumber);
+                    com.Parameters.AddWithValue("Fname", request.FirstName);
+                    com.Parameters.AddWithValue("Lname", request.LastName);
+                    com.Parameters.AddWithValue("BirthDate", request.BirthDate);
+                    com.Parameters.AddWithValue("IdEnrollment", idEnrollment);
+                    com.ExecuteNonQuery();
+
+                    tran.Commit();
+
+                }
+                catch (SqlException exc)
+                {
+                    tran.Rollback();
+                }
+            }
 
         }
 
