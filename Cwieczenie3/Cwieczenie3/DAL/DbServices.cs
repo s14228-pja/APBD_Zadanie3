@@ -66,5 +66,10 @@ namespace Cwieczenie3.DAL
             }
             return _students;
         }
+
+        public bool VerifyEnrolment(Student student)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -10,5 +10,7 @@ namespace Cwieczenie3.DAL
     {
         public IEnumerable<Student> GetStudents();
         public IEnumerable<Student> GetStudent(String nrIndeksu);
+        public Boolean VerifyEnrolment(Student student);
+        public Boolean VerifyEnrolmentExists(Enrollment enrollment);
     }
 }
