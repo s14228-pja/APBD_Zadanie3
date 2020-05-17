@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Cwieczenie3.DAL;
+﻿using Cwieczenie3.DAL;
 using Cwieczenie3.Models;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Cwieczenie3.Controllers
@@ -56,11 +51,11 @@ namespace Cwieczenie3.Controllers
                 return BadRequest();
             }
             Enrollment newEnrollment = _dbService.PromoteStudents(enrollment.Semester, enrollment.Studies);
-            if (enrollment == null)
+            if (newEnrollment == null)
             {
                 return BadRequest();
             }
-            return Ok(enrollment);
+            return Ok(newEnrollment);
         }
     }
 }
