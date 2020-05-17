@@ -47,7 +47,7 @@ namespace Cwieczenie3.DAL
             throw new NotImplementedException();
         }
 
-        public void PromoteStudents(int semester, string studies)
+        public Enrollment PromoteStudents(int semester, string studies)
         {
             throw new NotImplementedException();
         }

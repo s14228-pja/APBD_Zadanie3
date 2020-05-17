@@ -57,7 +57,7 @@ namespace Cwieczenie3.DAL
                     st.IndexNumber = dr["IndexNumber"].ToString();
                     st.BirthDate = DateTime.Parse(dr["BirthDate"].ToString());
                     st.StudiesName = dr["Name"].ToString();
-                    st.Semester = dr["Semester"].ToString();
+                    st.Semester = int.Parse(dr["Semester"].ToString());
                     _students.Add(st);
 
                 }
@@ -132,7 +132,7 @@ namespace Cwieczenie3.DAL
                     }
                     int idstudies = (int)dr["IdStudies"];
 
-                    com.CommandText = "select IdEnrollment from Enrollment where idStudy=@idstudies and semester = '1'";
+                    com.CommandText = "select IdEnrollment from Enrollment where idStudy=@idstudies and semester = 1";
                     com.Parameters.AddWithValue("idstudies", idstudies);
 
                     var dr2 = com.ExecuteReader();
@@ -141,7 +141,7 @@ namespace Cwieczenie3.DAL
                     {
                         DateTime dateTimeVariable = DateTime.Now;
                         com.CommandText = "INSERT INTO IdEnrollment(Semester, IdStudy, StartDate) VALUES(@Semester, @IdStudies, @Today)";
-                        com.Parameters.AddWithValue("Semester", 1;
+                        com.Parameters.AddWithValue("Semester", 1);
                         com.Parameters.AddWithValue("IdStudies", idstudies);
                         com.Parameters.AddWithValue("Today", dateTimeVariable);
                         com.ExecuteNonQuery();
@@ -167,7 +167,7 @@ namespace Cwieczenie3.DAL
 
                     tran.Commit();
 
-                    en.Semester = "1";
+                    en.Semester = 1;
                     en.Studies = request.StudiesName;
                 }
                 catch (SqlException exc)
@@ -180,7 +180,7 @@ namespace Cwieczenie3.DAL
 
         }
 
-        public void PromoteStudents(int semester, string studies)
+        public Enrollment PromoteStudents(int semester, string studies)
         {
             throw new NotImplementedException();
         }

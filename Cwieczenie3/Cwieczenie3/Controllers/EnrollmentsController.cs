@@ -55,8 +55,12 @@ namespace Cwieczenie3.Controllers
             {
                 return BadRequest();
             }
-            Enrollment enrollment2 = new Enrollment();
-            return Ok(enrollment2);
+            Enrollment newEnrollment = _dbService.PromoteStudents(enrollment.Semester, enrollment.Studies);
+            if (enrollment == null)
+            {
+                return BadRequest();
+            }
+            return Ok(enrollment);
         }
     }
 }

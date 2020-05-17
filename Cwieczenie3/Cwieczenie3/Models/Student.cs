@@ -23,7 +23,7 @@ namespace Cwieczenie3.Models
         {
             get; set;
         }
-        public string Semester
+        public int Semester
         {
             get; set;
         }

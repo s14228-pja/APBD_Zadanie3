@@ -13,6 +13,6 @@ namespace Cwieczenie3.DAL
         public Boolean VerifyEnrolment(Student student);
         public Boolean VerifyEnrolmentExists(Enrollment enrollment);
         public Enrollment EnrollStudent(Student request);
-        public void PromoteStudents(int semester, string studies);
+        public Enrollment PromoteStudents(int semester, string studies);
     }
 }
