@@ -1,4 +1,5 @@
-﻿using Cwieczenie3.Models;
+﻿using Cwieczenie3.DTOs;
+using Cwieczenie3.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,5 +15,6 @@ namespace Cwieczenie3.DAL
         public Boolean VerifyEnrolmentExists(Enrollment enrollment);
         public Enrollment EnrollStudent(Student request);
         public Enrollment PromoteStudents(int semester, string studies);
+        public String Login(String indexNumber);
     }
 }

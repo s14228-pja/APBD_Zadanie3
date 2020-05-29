@@ -1,5 +1,6 @@
 ﻿using Cwieczenie3.DAL;
 using Cwieczenie3.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Cwieczenie3.Controllers
@@ -16,6 +17,7 @@ namespace Cwieczenie3.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "employee")]
         public IActionResult CreateStudent(Student student)
         {
 
@@ -43,6 +45,7 @@ namespace Cwieczenie3.Controllers
 
         [Route("api/enrollments/promotions")]
         [HttpPost]
+        [Authorize(Roles ="employee")]
         public IActionResult PromoteStudent(Enrollment enrollment)
         {
 

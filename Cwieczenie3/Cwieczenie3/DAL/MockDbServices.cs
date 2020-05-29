@@ -51,5 +51,10 @@ namespace Cwieczenie3.DAL
         {
             throw new NotImplementedException();
         }
+
+        public string Login(string indexNumber)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -204,5 +204,29 @@ namespace Cwieczenie3.DAL
             }
             return en;
         }
+
+        public string Login(string indexNumber)
+        {
+            String password ="";
+            using (var con = new SqlConnection("Data Source = db-mssql; Initial Catalog = s14228; Integrated Security = True"))
+            using (var com = new SqlCommand())
+            {
+
+                com.Connection = con;
+                com.CommandText = "select Password from Student where IndexNumber = @indexNumber ";
+                com.Parameters.AddWithValue("indexNumber", indexNumber);
+                con.Open();
+
+                var dr = com.ExecuteReader();
+                while (dr.Read())
+                {
+                    var st = new Student();
+                    password = dr["Password"].ToString();
+                }
+
+
+            }
+            return password;
+        }
     }
 }
